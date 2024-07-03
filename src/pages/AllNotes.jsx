@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Modal, ModalContent, ModalHeader, ModalFooter, ModalTitle, ModalDescription, ModalClose } from "@/components/ui/modal";
+import { Dialog, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const AllNotes = () => {
@@ -57,13 +57,13 @@ const AllNotes = () => {
           </Card>
         ))}
       </div>
-      <Modal open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <ModalContent>
-          <ModalHeader>
-            <ModalTitle>{currentNote.id ? "Edit Note" : "Add Note"}</ModalTitle>
-            <ModalClose />
-          </ModalHeader>
-          <ModalDescription>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{currentNote.id ? "Edit Note" : "Add Note"}</DialogTitle>
+            <DialogClose />
+          </DialogHeader>
+          <DialogDescription>
             <Input
               placeholder="Title"
               value={currentNote.title}
@@ -76,13 +76,13 @@ const AllNotes = () => {
               onChange={(e) => setCurrentNote({ ...currentNote, content: e.target.value })}
               className="mb-4"
             />
-          </ModalDescription>
-          <ModalFooter>
+          </DialogDescription>
+          <DialogFooter>
             <Button variant="outline" onClick={() => setIsModalOpen(false)}>Cancel</Button>
             <Button onClick={handleSaveNote}>{currentNote.id ? "Save" : "Add"}</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
